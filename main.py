@@ -44,6 +44,9 @@ while True:
         mes = ReadFile('db.csv')
         userList = mes.getMessages()
         id = input('Введите идентификатор редактируемой заметки: ')
+        if list(userList.keys()).count(id) != 1:
+            print(f'Заметки с идентификатором {id} не существует')
+            continue
         print('Старый заголовок заметки: ', userList[id][0])
         title = input('Введите новый заголовок заметки: ');
         print('Старый основной текст заметки: ', userList[id][1])
@@ -61,6 +64,9 @@ while True:
         mes = ReadFile('db.csv')
         userList = mes.getMessages()
         id = input('Введите идентификатор удаляемой заметки: ')
+        if list(userList.keys()).count(id) != 1:
+            print(f'Заметки с идентификатором {id} не существует')
+            continue
         del userList[id]
 
         update = WriteFile('db.csv', 'w')
